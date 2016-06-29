@@ -1,0 +1,8 @@
+{
+  "name": "codemods",
+  "version": "0.0.1",
+  "description": "Collection of codemods",
+  "main": "index.js",
+  "author": "Rogelio Guzman",
+  "license": "ISC"
+}
