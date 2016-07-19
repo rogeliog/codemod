@@ -1,7 +1,11 @@
-import rule from './rule';
+import path from 'path';
 
-export default function transform(file, api) {
+export default function transform(file, api, options) {
   const j = api.jscodeshift;
+
+  const rule = options.rule ?
+    require(path.resolve(process.cwd(), options.rule)) :
+    require('./rule');
 
   const toDefaultImport = (specifier, source) => (
     j.importDeclaration(
