@@ -26,5 +26,5 @@ export default function transform(file, api, options) {
     .replaceWith(({ value: { source, specifiers } }) => (
       specifiers.map((specifier) => toDefaultImport(specifier, source))
     ))
-    .toSource();
+    .toSource({ quote: 'single' });
 }
