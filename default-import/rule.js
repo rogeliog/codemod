@@ -1,5 +1,8 @@
+
 export default {
-  filter: {},
+  filter() {
+    return true;
+  },
   mapSpecifier(specifier, /* source */) {
     return specifier.local.name;
   },

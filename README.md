@@ -40,7 +40,9 @@ For example we can change `default-import/rule.js` to only modify the imports th
 
 ```javascript
 export default {
-  filter: { source: { value: 'components' } },
+  filter({ value: { source } }) {
+    return source.value.match(/^components/);
+  },
   mapSpecifier(specifier, /* source */) {
     return specifier.local.name;
   },

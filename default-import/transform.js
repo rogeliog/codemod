@@ -17,10 +17,12 @@ export default function transform(file, api, options) {
   );
 
   return j(file.source)
-    .find(j.ImportDeclaration, rule.filter)
-    .filter(({ value: { specifiers } }) => (
-      !specifiers.some(({ type }) => type === 'ImportDefaultSpecifier')
-    ))
+    .find(j.ImportDeclaration, {})
+    .filter((node) => {
+      const { value: { specifiers } } = node;
+      return !specifiers.some(({ type }) => type === 'ImportDefaultSpecifier')
+        && rule.filter(node);
+    })
     .replaceWith(({ value: { source, specifiers } }) => (
       specifiers.map((specifier) => toDefaultImport(specifier, source))
     ))
