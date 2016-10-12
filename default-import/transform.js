@@ -4,8 +4,8 @@ export default function transform(file, api, options) {
   const j = api.jscodeshift;
 
   const rule = options.rule ?
-    require(path.resolve(process.cwd(), options.rule)) :
-    require('./rule');
+    require(path.resolve(process.cwd(), options.rule)).default :
+    require('./rule').default;
 
   const toDefaultImport = (specifier, source) => (
     j.importDeclaration(
